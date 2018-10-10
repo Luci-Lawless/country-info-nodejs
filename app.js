@@ -10,7 +10,15 @@ fs.readFile('./countries.json', (err, data) => {
     throw err;
   }
   rl.question("Type the name of a country to display information: ", (answer) => {
-    const countryName = answer;
+    const capitalizeAnswer = (country) => {
+      let splitWord = country.toLowerCase().split(' ');
+      for (let i = 0; i < splitWord.length; i++) {
+        splitWord[i] = splitWord[i].charAt(0).toUpperCase() + splitWord[i].substring(1);
+      }
+        return splitWord.join(' ');
+    }
+
+    const countryName = capitalizeAnswer(answer);
     const parsed = JSON.parse(data);
     for (var i = 0; i < parsed.length; i ++) {
       if (parsed[i].name === countryName) {
