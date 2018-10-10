@@ -1,15 +1,17 @@
-var fs = require ('fs'); 
+var fs = require ('fs');
 
-function fileReader (filename, callback) {
-	fs.readFile(filename, 'utf-8', function (err, data) {
+const readJsonFile = (jsonFile, callback) => {
+
+	console.log('oi' + jsonFile);
+	fs.readFile(jsonFile, (err, data) => {
 		if (err) {
-			console.log ('An error occured')
+			console.log('Not Found!');
 			throw err;
+		} else {
+			const parsed = JSON.parse(data);
+			callback (parsed);
 		}
-		else
-			var parsedFile = JSON.parse(data);
-			callback (parsedFile);
-		})
+	});
 }
 
-module.exports = fileReader;
+module.exports = readJsonFile;
