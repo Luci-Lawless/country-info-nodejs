@@ -3,7 +3,7 @@ var fs = require ('fs');
 function fileReader (filename, callback) {
 	fs.readFile(filename, 'utf-8', function (err, data) {
 		if (err) {
-			console.log ('Not found!')
+			console.log ('An error occured')
 			throw err;
 		}
 		else
